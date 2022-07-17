@@ -2,7 +2,7 @@ package gochapter
 
 import "strings"
 
-func Parse(src string, counter *Counter) []*Scene {
+func Parse(counter *Counter, src string) []*Scene {
 	lines := strings.Split(
 		strings.ReplaceAll(src, "\r", ""),
 		"\n",
@@ -23,7 +23,7 @@ func Parse(src string, counter *Counter) []*Scene {
 func ParseFew(counter *Counter, srcs ...string) []*Scene {
 	scenes := make([]*Scene, 0, 64)
 	for _, src := range srcs {
-		scenes = append(scenes, Parse(src, counter)...)
+		scenes = append(scenes, Parse(counter, src)...)
 	}
 	return scenes
 }
