@@ -48,3 +48,23 @@ func TestCommandParseNoArgs(t *testing.T) {
 		t.Fatal("Args is present. Even if there are not specified")
 	}
 }
+
+func TestAllScenes(t *testing.T) {
+	src := "Line1\nLine2\n\nLine1\n.command a, b\n\n\n\n\n\nLine1"
+	scenes := Parse(NewCounter(1), src)
+	if len(scenes) != 3 {
+		t.Fatal("Scenes len need to be 3")
+	}
+	if scenes[0].Lines[0] != "Line1" || scenes[0].Lines[1] != "Line2" {
+		t.Fatal("First scene lines is wrong")
+	}
+	if scenes[1].Lines[0] != "Line1" {
+		t.Fatal("Second scene line 0 is wrong")
+	}
+	if scenes[1].Commands[0].Name != "command" || scenes[1].Commands[0].Args[0] != "a" || scenes[1].Commands[0].Args[1] != "b" {
+		t.Fatal("Second scene command is bad!")
+	}
+	if scenes[2].Lines[0] != "Line1" {
+		t.Fatal("Third scene line 0 is wrong")
+	}
+}

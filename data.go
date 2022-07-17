@@ -11,6 +11,10 @@ type Scene struct {
 	Commands []*Command
 }
 
+func (s *Scene) isEmpty() bool {
+	return len(s.Lines) < 1 && len(s.Commands) < 1
+}
+
 func newScene(id int) *Scene {
 	return &Scene{
 		Id:       id,

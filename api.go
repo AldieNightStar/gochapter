@@ -11,8 +11,10 @@ func Parse(counter *Counter, src string) []*Scene {
 	scene := newScene(counter.DoCount())
 	for _, line := range lines {
 		if len(strings.Trim(line, " \t")) < 1 {
-			scenes = append(scenes, scene)
-			scene = newScene(counter.DoCount())
+			if !scene.isEmpty() {
+				scenes = append(scenes, scene)
+				scene = newScene(counter.DoCount())
+			}
 			continue
 		}
 		if cmd := parseComand(line); cmd != nil {
@@ -20,6 +22,9 @@ func Parse(counter *Counter, src string) []*Scene {
 		} else {
 			scene.Lines = append(scene.Lines, line)
 		}
+	}
+	if !scene.isEmpty() {
+		scenes = append(scenes, scene)
 	}
 	return scenes
 }
