@@ -1,12 +1,22 @@
 package gochapter
 
+type Command struct {
+	Name string
+	Args []string
+}
+
 type Scene struct {
-	Id    int
-	Lines []string
+	Id       int
+	Lines    []string
+	Commands []*Command
 }
 
 func newScene(id int) *Scene {
-	return &Scene{Lines: make([]string, 0, 8), Id: id}
+	return &Scene{
+		Id:       id,
+		Lines:    make([]string, 0, 8),
+		Commands: make([]*Command, 0, 8),
+	}
 }
 
 type Counter struct {

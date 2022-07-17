@@ -15,7 +15,11 @@ func Parse(counter *Counter, src string) []*Scene {
 			scene = newScene(counter.DoCount())
 			continue
 		}
-		scene.Lines = append(scene.Lines, line)
+		if cmd := parseComand(line); cmd != nil {
+			scene.Commands = append(scene.Commands, cmd)
+		} else {
+			scene.Lines = append(scene.Lines, line)
+		}
 	}
 	return scenes
 }

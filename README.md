@@ -24,7 +24,15 @@ scenes := gochapter.ParseFew(counter, src, src2, src3)
 * `Scene`
 ```go
 type Scene struct {
-	Id    int
-	Lines []string
+	Id       int
+	Lines    []string
+	Commands []*Command
+}
+```
+* `Command`
+```go
+type Command struct {
+	Name string
+	Args []string
 }
 ```
