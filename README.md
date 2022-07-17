@@ -36,3 +36,25 @@ type Command struct {
 	Args []string
 }
 ```
+
+# Scene view
+* This is how scenes looks like
+* Commands starts with `.`, but not `..`
+```
+This is first Scene
+This is second line of first scene
+
+This is second Scene
+This is the second line of the second Scene
+And third line
+
+This is third scene
+.background red
+.animations stop
+
+
+
+
+Last scene
+.image 01.png
+```
