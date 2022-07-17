@@ -23,7 +23,7 @@ func Parse(src string, counter *Counter) []*Scene {
 func ParseFew(counter *Counter, srcs ...string) []*Scene {
 	scenes := make([]*Scene, 0, 64)
 	for _, src := range srcs {
-		addAll(&scenes, Parse(src, counter))
+		scenes = append(scenes, Parse(src, counter)...)
 	}
 	return scenes
 }
